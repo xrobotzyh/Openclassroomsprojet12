@@ -8,6 +8,8 @@ from user.models import User
 class Client(models.Model):
     id = models.UUIDField(unique=True, primary_key=True)
     contact_user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
     email = models.CharField(max_length=30)
     telephone = models.CharField(max_length=12)
     enterprise_name = models.CharField(max_length=128)

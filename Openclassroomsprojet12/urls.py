@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from contact.urls import router_client
 from user.urls import router_user
 
 urlpatterns = [
@@ -25,5 +26,6 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/users/', include(router_user.urls)),
+    path('api/clients/', include(router_client.urls)),
 
 ]
