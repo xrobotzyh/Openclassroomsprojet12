@@ -1,5 +1,9 @@
+from uuid import uuid4
+
 from rest_framework import viewsets
 from rest_framework.mixins import CreateModelMixin
+
+from user.models import User
 # from rest_framework.pagination import PageNumberPagination
 # from rest_framework.permissions import IsAuthenticated
 
@@ -14,12 +18,12 @@ class CreateClientViewSet(CreateModelMixin, viewsets.GenericViewSet):
     serializer_class = CreateClientSerializer
 
     def perform_create(self, serializer):
-        user_instance = self.request.user
-        client_instance = serializer.save(contact_user=user_instance)
+        uuid = uuid4()
+        user_id = self.request.user.id
+        print(user_id)
+        user_instance = User.objects.get(id=user_id)
+        client_instance = serializer.save(contact_user=user_instance, id=uuid)
         return client_instance
 
-
-
-from django.shortcuts import render
 
 # Create your views here.

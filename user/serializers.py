@@ -37,7 +37,6 @@ class UserInscriptionSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-    def get_full_name(self,validated_data):
+    def get_full_name(self, validated_data):
         full_name = validated_data.first_name + '' + validated_data.last_name
         return full_name
-

@@ -8,6 +8,8 @@ class CreateClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
         fields = ['id',
+                  'first_name',
+                  'last_name',
                   'contact_user',
                   'email',
                   'telephone',
