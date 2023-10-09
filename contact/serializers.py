@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Client, ClientContact
+from .models import Client
 
 
 class CreateClientSerializer(serializers.ModelSerializer):

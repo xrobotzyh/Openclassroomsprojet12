@@ -1,4 +1,4 @@
-from datetime import datetime
+import uuid
 from enum import Enum
 
 from django.db import models
@@ -11,12 +11,10 @@ class Contract(models.Model):
         sign = 'signed'
         not_sign = 'not signed'
 
-    id = models.UUIDField(unique=True, primary_key=True)
-    client = models.ForeignKey(to=Client, on_delete=models.CASCADE, related_name='client')
-    client_from = models.ForeignKey(to=Client, on_delete=models.CASCADE)
-    # client_from = models.ForeignKey(to=Client, on_delete=models.CASCADE, to_field='contact_user', default=1)
-    name = models.CharField(max_length=256)
+    id = models.UUIDField(unique=True, primary_key=True,default=uuid.uuid4)
+    client_id = models.ForeignKey(to=Client, on_delete=models.CASCADE, related_name='client')
     quotation = models.PositiveIntegerField()
+    paid = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=True)
     status = models.CharField(max_length=10,

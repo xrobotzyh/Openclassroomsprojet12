@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Client, Contract
+from .models import Contract
 
 
 class CreateContractSerializer(serializers.ModelSerializer):
@@ -27,4 +27,4 @@ class CreateContractSerializer(serializers.ModelSerializer):
         return client_name
 
     def get_client_from_seller(self, obj):
-        return obj.client.contact_user
+        return obj.Client.contact_user_id

@@ -20,7 +20,6 @@ class CreateClientViewSet(CreateModelMixin, viewsets.GenericViewSet):
     def perform_create(self, serializer):
         uuid = uuid4()
         user_id = self.request.user.id
-        print(user_id)
         user_instance = User.objects.get(id=user_id)
         client_instance = serializer.save(contact_user=user_instance, id=uuid)
         return client_instance
