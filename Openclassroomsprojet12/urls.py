@@ -19,6 +19,7 @@ from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from contact.urls import router_client
+from contrat.urls import router_contract
 from user.urls import router_user
 
 urlpatterns = [
@@ -27,5 +28,6 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/users/', include(router_user.urls)),
     path('api/clients/', include(router_client.urls)),
+    path('api/contracts/', include(router_contract.urls)),
 
 ]

@@ -16,6 +16,9 @@ class Client(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=False)
 
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
 
 class ClientContact(models.Model):
     email = models.ForeignKey(to=Client, on_delete=models.CASCADE, related_name='client_email')

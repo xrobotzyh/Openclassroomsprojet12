@@ -21,13 +21,6 @@ class UserInscriptionSerializer(serializers.ModelSerializer):
                   'department']
         read_only_fields = ['id']
 
-    def validate(self, attrs):
-        password1 = attrs.get('password')
-        password2 = attrs.get('password2')
-        if password2 != password1:
-            raise serializers.ValidationError({'password2': 'You must enter the same password.'})
-        attrs.pop('password2')
-        return attrs
 
     # rewrite the create method to encrypt the password
     def create(self, validated_data):
