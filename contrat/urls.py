@@ -4,4 +4,4 @@ from . import views
 
 # register router
 router_contract = DefaultRouter()
-router_contract.register(r'create', viewset=views.CreateContratViewSet, basename='Create Contract')
+router_contract.register(r'', viewset=views.ContratViewSet, basename='Contract')

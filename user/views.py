@@ -4,11 +4,11 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 
 from .models import User
-from .serializers import UserInscriptionSerializer
+from .serializers import UserSerializer
 
 
-class UserInscriptionViewSet(CreateModelMixin, viewsets.GenericViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     # give the queryset and serializer
     queryset = User.objects.all()
-    serializer_class = UserInscriptionSerializer
+    serializer_class = UserSerializer
 

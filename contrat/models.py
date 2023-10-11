@@ -11,9 +11,9 @@ class Contract(models.Model):
         sign = 'signed'
         not_sign = 'not signed'
 
-    id = models.UUIDField(unique=True, primary_key=True,default=uuid.uuid4)
+    id = models.UUIDField(unique=True, primary_key=True, default=uuid.uuid4)
     client_id = models.ForeignKey(to=Client, on_delete=models.CASCADE, related_name='client')
-    quotation = models.PositiveIntegerField()
+    quotation = models.DecimalField(decimal_places=2, max_digits=32)
     paid = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=True)

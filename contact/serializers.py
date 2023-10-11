@@ -3,17 +3,17 @@ from rest_framework import serializers
 from .models import Client
 
 
-class CreateClientSerializer(serializers.ModelSerializer):
+class ClientSerializer(serializers.ModelSerializer):
     # register serializer
     class Meta:
         model = Client
         fields = ['id',
+                  'contact_id',
                   'first_name',
                   'last_name',
-                  'contact_user',
                   'email',
-                  'telephone',
-                  'enterprise_name',
+                  'phone',
+                  'company_name',
                   'created_at',
                   'updated_at']
-        read_only_fields = ['id', 'contact_user', 'created_at', 'updated_at', 'contact_user']
+        read_only_fields = ['id', 'contact_id', 'created_at', 'updated_at']

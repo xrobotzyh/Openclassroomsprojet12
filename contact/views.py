@@ -9,20 +9,19 @@ from user.models import User
 
 from .models import Client
 # from .permissions import HasUserprofilePermissions
-from .serializers import CreateClientSerializer
+from .serializers import ClientSerializer
 
 
-class CreateClientViewSet(CreateModelMixin, viewsets.GenericViewSet):
+class ClientViewSet(viewsets.ModelViewSet):
     # give the queryset and serializer
     queryset = Client.objects.all()
-    serializer_class = CreateClientSerializer
+    serializer_class = ClientSerializer
 
     def perform_create(self, serializer):
         uuid = uuid4()
         user_id = self.request.user.id
-        user_instance = User.objects.get(id=user_id)
-        client_instance = serializer.save(contact_user=user_instance, id=uuid)
-        return client_instance
-
+        user = User.objects.get(id=user_id)
+        client = serializer.save(contact_id=user, id=uuid)
+        return client
 
 # Create your views here.

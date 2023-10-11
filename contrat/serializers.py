@@ -5,26 +5,22 @@ from .models import Contract
 
 class CreateContractSerializer(serializers.ModelSerializer):
     # register serializer
-    client_name = serializers.SerializerMethodField()
-    client_from_seller = serializers.SerializerMethodField()
+    client_name = serializers.SerializerMethodField(read_only=True)
+    client_from_seller = serializers.StringRelatedField(source="client_id.contact_id")
 
     class Meta:
         model = Contract
         fields = ['id',
                   'client_name',
-                  'client',
-                  'client_from',
+                  'client_id',
                   'client_from_seller',
-                  'name',
                   'quotation',
+                  'paid',
                   'status',
                   'created_at',
                   'updated_at']
-        read_only_fields = ['id', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'created_at', 'updated_at', 'client_from_seller']
 
     def get_client_name(self, obj):
-        client_name = obj.Client.first_name + '' + obj.Client.last_name
+        client_name = obj.client_id.first_name + ' ' + obj.client_id.last_name
         return client_name
-
-    def get_client_from_seller(self, obj):
-        return obj.Client.contact_user_id
