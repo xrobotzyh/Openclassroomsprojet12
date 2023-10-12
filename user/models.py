@@ -13,3 +13,4 @@ class User(AbstractUser):
     phone = models.CharField(max_length=12)
     department = models.CharField(max_length=18,
                                   choices=[(choice.name, choice.value) for choice in DepartmentChoice])
+

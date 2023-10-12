@@ -20,6 +20,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from contact.urls import router_client
 from contrat.urls import router_contract
+from event.urls import router_event
 from user.urls import router_user
 
 urlpatterns = [
@@ -29,5 +30,7 @@ urlpatterns = [
     path('api/users/', include(router_user.urls)),
     path('api/clients/', include(router_client.urls)),
     path('api/contracts/', include(router_contract.urls)),
+    path('api/events/', include(router_event.urls)),
+
 
 ]

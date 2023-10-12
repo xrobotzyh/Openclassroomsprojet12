@@ -4,11 +4,11 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 
 from .models import User
+from .permissions import HasUserProfilePermissions
 from .serializers import UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    # give the queryset and serializer
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
+    permission_classes = [IsAuthenticated, HasUserProfilePermissions]

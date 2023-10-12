@@ -19,3 +19,4 @@ class Contract(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null=True)
     status = models.CharField(max_length=10,
                               choices=[(choice.name, choice.value) for choice in ContractStatus])
+
