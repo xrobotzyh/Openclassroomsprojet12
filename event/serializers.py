@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from contact.models import Client
 from user.models import User
 from .models import Event
 
@@ -11,25 +12,26 @@ class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ['id',
-                  'contrat_id',
-                  'client_name',
-                  'client_contact',
-                  'assigned_to',
-                  'starts_at',
-                  'ends_at',
-                  'location',
-                  'attendees',
-                  'notes']
+        fields = '__all__'
         read_only_fields = ['id', 'starts_at', 'updated_at', 'client_name', 'client_contact']
 
     def get_client_name(self, obj):
-        return obj.client_id.first_name + ' ' + obj.client_id.last_name
+        return obj.client.first_name + ' ' + obj.client.last_name
 
     def get_client_contact(self, obj):
-        return obj.client_id.email + ' ' + obj.client_id.phone
+        return obj.client.email + ' ' + obj.client.phone
 
-    def validate_assigned_to(self, value):
-        user = User.objects.get(id=value.id)
-        if not user.department == 'support':
-            raise serializers.ValidationError("Assignee must be a support user.")
+    def validate(self, data):
+        contract = data.get('contrat')
+        assign_to_user = data.get('assigned_to')
+
+        if contract.status == 'not_sign':
+            raise serializers.ValidationError('The contract has not signed, please wait the client to sign it')
+
+        if Client.objects.get(id=contract.client_id).contact_id != self.context['request'].user.id:
+            raise serializers.ValidationError('You do not have permission to create the event')
+
+        if not assign_to_user.is_support():
+            raise serializers.ValidationError('Assignee must be a support user.')
+
+        return data

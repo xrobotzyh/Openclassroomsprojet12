@@ -14,3 +14,11 @@ class User(AbstractUser):
     department = models.CharField(max_length=18,
                                   choices=[(choice.name, choice.value) for choice in DepartmentChoice])
 
+    def is_sales(self):
+        return self.department == 'sales'
+
+    def is_support(self):
+        return self.department == 'support'
+
+    def is_management(self):
+        return self.department == 'management'

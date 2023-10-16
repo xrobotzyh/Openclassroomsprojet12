@@ -1,14 +1,10 @@
 from rest_framework import permissions
 
-from utils.permissions import is_management
-
 
 class HasContractManipPermissions(permissions.BasePermission):
-
-    def has_object_permission(self, request, view, obj):
-        if view.action in {'create', 'partial_update', 'update'}:
-            return is_management(request.user.id) or obj.client_id.contact_id.id == request.user.id
-        if view.action in {'list', 'retrieve'}:
-            return True
+    def has_permission(self, request, view):
+        connect_user = request.user
+        if view.action in {'create', 'partial_update', 'update', 'destroy'}:
+            return connect_user.is_management()
         else:
-            return False
+            return True

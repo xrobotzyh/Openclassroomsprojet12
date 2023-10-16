@@ -1,5 +1,3 @@
-from uuid import uuid4
-
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
@@ -19,7 +17,7 @@ class ClientViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         user_id = self.request.user.id
         user = User.objects.get(id=user_id)
-        client = serializer.save(contact_id=user, id=uuid)
+        client = serializer.save(contact=user)
         return client
 
 # Create your views here.

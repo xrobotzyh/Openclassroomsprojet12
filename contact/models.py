@@ -7,7 +7,7 @@ from user.models import User
 
 class Client(models.Model):
     id = models.UUIDField(unique=True, primary_key=True, default=uuid.uuid4)
-    contact_id = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    contact = models.ForeignKey(to=User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.CharField(max_length=30)

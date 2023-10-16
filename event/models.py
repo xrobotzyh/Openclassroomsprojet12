@@ -9,8 +9,8 @@ from user.models import User
 
 class Event(models.Model):
     id = models.UUIDField(unique=True, primary_key=True, default=uuid.uuid4)
-    contrat_id = models.ForeignKey(to=Contract, on_delete=models.CASCADE, related_name='contrat_id_event')
-    client_id = models.ForeignKey(to=Client, on_delete=models.CASCADE)
+    contrat = models.ForeignKey(to=Contract, on_delete=models.CASCADE, related_name='contrat_id_event')
+    client = models.ForeignKey(to=Client, on_delete=models.CASCADE)
     assigned_to = models.ForeignKey(to=User, on_delete=models.CASCADE)
     attendees = models.PositiveSmallIntegerField()
     location = models.TextField(max_length=512)

@@ -8,11 +8,12 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Client, Contract
 from .permissions import HasContractManipPermissions
 # from .permissions import HasUserprofilePermissions
-from .serializers import CreateContractSerializer
+from .serializers import ContractSerializer
 
 
 class ContratViewSet(viewsets.ModelViewSet):
     # give the queryset and serializer
     queryset = Contract.objects.all()
-    serializer_class = CreateContractSerializer
+    serializer_class = ContractSerializer
     permission_classes = [IsAuthenticated, HasContractManipPermissions]
+
