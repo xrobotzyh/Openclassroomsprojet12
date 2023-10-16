@@ -1,5 +1,7 @@
 from rest_framework import permissions
 
+from contact.models import Client
+
 
 class HasEventManipPermissions(permissions.BasePermission):
 
@@ -14,11 +16,12 @@ class HasEventManipPermissions(permissions.BasePermission):
         # only the contract associated client associated seller can create a event once the contract status is signed
 
         # only the assigned support personne or department of management can update the event
-        connect_user = request.user
+        connected_user = request.user
         if view.action in {'partial_update', 'update'}:
-            return obj.assigned_to == connect_user.id or connect_user.is_management() or obj.client_id.contact_id == \
-                connect_user.id
+            return obj.assigned_to == connected_user.id or connected_user.is_management() or \
+                   Client.objects.get(id=obj.client_id).contact_id == connected_user.id
         if view.action in {'destroy'}:
-            return connect_user.is_management()
+            return connected_user.is_management()
         else:
             return True
+

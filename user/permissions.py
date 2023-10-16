@@ -7,10 +7,12 @@ class HasUserProfilePermissions(permissions.BasePermission):
         connect_user = request.user
         if view.action == 'create':
             return connect_user.is_management()
+        else:
+            return True
 
     def has_object_permission(self, request, view, obj):
-        connect_user = request.user
+        connected_user = request.user
         if view.action in {'destroy', 'partial_update', 'update'}:
-            return connect_user.is_management()
+            return connected_user.is_management()
         else:
             return True

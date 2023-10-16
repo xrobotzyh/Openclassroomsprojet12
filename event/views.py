@@ -20,13 +20,11 @@ class EventViewSet(viewsets.ModelViewSet):
     # filterset_fields = ('assigned_to')
 
     def perform_create(self, serializer):
-        contrat_id = self.request.data.get('contrat')
+        contract_id = self.request.data.get('contrat')
         user_id = self.request.data.get('assigned_to')
-        contrat = Contract.objects.get(id=contrat_id)
+        contrat = Contract.objects.get(id=contract_id)
         client = Client.objects.get(id=contrat.client_id)
         user = User.objects.get(id=user_id)
-        print(client.id)
-        print(user.id)
         event = serializer.save(client=client, assigned_to=user)
         return event
 
