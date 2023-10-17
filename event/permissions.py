@@ -4,6 +4,14 @@ from contact.models import Client
 
 
 class HasEventManipPermissions(permissions.BasePermission):
+    """
+        Event
+        create: department sales
+        read: all registered users
+        update: (department management, sales(which client was created by),department support(which assigned to),
+                condition: contract status is signed
+        delete: department management
+    """
 
     def has_permission(self, request, view):
         connect_user = request.user

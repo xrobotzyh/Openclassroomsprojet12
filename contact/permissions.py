@@ -2,6 +2,13 @@ from rest_framework import permissions
 
 
 class HasClientManipPermissions(permissions.BasePermission):
+    """
+    Client
+    create: department management, department sales
+    read: all registered users
+    update: department management, sales(client was created by)
+    delete: department management
+    """
     def has_permission(self, request, view):
         connected_user = request.user
         if view.action == 'create':

@@ -2,11 +2,18 @@ from rest_framework import permissions
 
 
 class HasUserProfilePermissions(permissions.BasePermission):
+    """
+        User
+        create: department management
+        read: all registered users
+        update: department management
+        delete: department management
+        """
 
     def has_permission(self, request, view):
-        connect_user = request.user
+        connected_user = request.user
         if view.action == 'create':
-            return connect_user.is_management()
+            return connected_user.is_management()
         else:
             return True
 
