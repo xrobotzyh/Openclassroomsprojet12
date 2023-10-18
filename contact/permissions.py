@@ -19,7 +19,7 @@ class HasClientManipPermissions(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         connected_user = request.user
         if view.action in {'partial_update', 'update'}:
-            return connected_user.is_management() or obj.contact.id == connected_user.id
+            return connected_user.is_management() or obj.contact == connected_user
         elif view.action == 'destroy':
             return connected_user.is_management()
         else:

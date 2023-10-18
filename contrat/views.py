@@ -1,13 +1,11 @@
 from rest_framework import viewsets
-from rest_framework.mixins import CreateModelMixin
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
+from django_filters import rest_framework as filters
 
-# from rest_framework.pagination import PageNumberPagination
-# from rest_framework.permissions import IsAuthenticated
-
+from .filters import ContractFilter
 from .models import Client, Contract
 from .permissions import HasContractManipPermissions
-# from .permissions import HasUserprofilePermissions
 from .serializers import ContractSerializer
 
 
@@ -16,4 +14,7 @@ class ContratViewSet(viewsets.ModelViewSet):
     queryset = Contract.objects.all()
     serializer_class = ContractSerializer
     permission_classes = [IsAuthenticated, HasContractManipPermissions]
+    pagination_class = PageNumberPagination
+    filter_backends = [filters.DjangoFilterBackend]
+    filterset_class = ContractFilter
 
