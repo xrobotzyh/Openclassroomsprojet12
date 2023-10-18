@@ -5,6 +5,10 @@ from django.db import models
 
 
 class User(AbstractUser):
+    """
+      a user models heritage the abstractuser, add department information phone number
+      check methode to check is the user is belongs to sales or support or management department
+    """
     class DepartmentChoice(Enum):
         sales = "sales"
         support = "support"

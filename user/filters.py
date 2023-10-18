@@ -4,6 +4,11 @@ from user.models import User
 
 
 class UserFilter(filters.FilterSet):
+    """
+    filter the users by their department
+    filter the users by their first name or last name or phone number or username
+    ordering the users list by user's first name, last name, phone number, username
+    """
     filter_by_department = filters.ChoiceFilter(field_name='department',
                                                 choices=[(choice.name, choice.value) for choice in
                                                          User.DepartmentChoice],

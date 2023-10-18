@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 from datetime import timedelta
 from pathlib import Path
+import sentry_sdk
 
 from django.conf import settings
 
@@ -156,3 +157,16 @@ SIMPLE_JWT = {
         'rest_framework_simplejwt.tokens.AccessToken', 'rest_framework_simplejwt.tokens.RefreshToken'),
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
+
+
+
+sentry_sdk.init(
+    dsn="https://2930874b065c317e28488b602b71eb34@o4506073358073856.ingest.sentry.io/4506073361154048",
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+)

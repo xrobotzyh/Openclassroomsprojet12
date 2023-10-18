@@ -21,7 +21,10 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from contact.urls import router_client
 from contrat.urls import router_contract
 from event.urls import router_event
+from sentry import trigger_error
 from user.urls import router_user
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +34,7 @@ urlpatterns = [
     path('api/clients/', include(router_client.urls)),
     path('api/contracts/', include(router_contract.urls)),
     path('api/events/', include(router_event.urls)),
+    path('sentry-debug/', trigger_error),
 
 
 ]
