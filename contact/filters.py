@@ -10,7 +10,6 @@ class ContactFilter(filters.FilterSet):
       """
     ordering = filters.OrderingFilter(
         fields=(('first_name', 'ordering by first name'), ('last_name', 'ordering by last name'),
-                ('phone', 'ordering by phone number')
                 ))
 
     class Meta:

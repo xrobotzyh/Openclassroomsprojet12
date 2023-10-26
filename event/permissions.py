@@ -19,6 +19,19 @@ class HasEventManipPermissions(permissions.BasePermission):
             return connect_user.is_sales()
         else:
             return True
+        # if view.action == 'create':
+        #     if request.user.is_sales():
+        #         contract_id = request.data.get('contrat')
+        #         try:
+        #             contract = Contract.objects.get(id=contract_id)
+        #             client = Client.objects.get(id=contract.client_id)
+        #             if client.contact != request.user:
+        #                 raise serializers.ValidationError('You do not have permission to create the event')
+        #         except (Contract.DoesNotExist, Client.DoesNotExist):
+        #             # if the contract or client doesn't exist
+        #             raise serializers.ValidationError('Invalid contract or client')
+        # return True
+
 
     def has_object_permission(self, request, view, obj):
         # only the contract associated client associated seller can create a event once the contract status is signed

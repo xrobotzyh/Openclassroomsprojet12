@@ -19,10 +19,10 @@ class User(AbstractUser):
                                   choices=[(choice.name, choice.value) for choice in DepartmentChoice])
 
     def is_sales(self):
-        return self.department == 'sales'
+        return self.department == User.DepartmentChoice.sales.value
 
     def is_support(self):
-        return self.department == 'support'
+        return self.department == User.DepartmentChoice.support.value
 
     def is_management(self):
-        return self.department == 'management'
+        return self.department == User.DepartmentChoice.management.value

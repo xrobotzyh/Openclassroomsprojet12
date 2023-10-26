@@ -1,7 +1,8 @@
 from django_filters import rest_framework as filters
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 from contact.models import Client
 from user.models import User
@@ -25,9 +26,16 @@ class EventViewSet(viewsets.ModelViewSet):
         contract_id = self.request.data.get('contrat')
         user_id = self.request.data.get('assigned_to')
 
+        if contract_id is None:
+            return Response({"error": "contract_id is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        if user_id is None:
+            user = None
+        else:
+            user = User.objects.get(id=user_id)
+
         contrat = Contract.objects.get(id=contract_id)
         client = Client.objects.get(id=contrat.client_id)
-        user = User.objects.get(id=user_id)
 
         event = serializer.save(client=client, assigned_to=user)
         return event
