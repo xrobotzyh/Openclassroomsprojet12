@@ -33,7 +33,7 @@ Install the packages listed in requirements.txt.
 pip install -r requirements.txt
 ```
 
-### Project Database Backup and Restoration
+### Project Database Restoration
 
 To restore the database from the backup file:
 
