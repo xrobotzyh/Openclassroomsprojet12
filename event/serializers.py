@@ -29,13 +29,15 @@ class EventSerializer(serializers.ModelSerializer):
             # check if the status of the contract is signed
             raise serializers.ValidationError('The contract has not signed, please wait the client to sign it')
 
-        if not assign_to_user.is_support():
-            # The assigned to user must be a support department user
-            raise serializers.ValidationError('Assignee must be a support user.')
+        if assign_to_user:
+            if not assign_to_user.is_support():
+                # The assigned to user must be a support department user
+                raise serializers.ValidationError('Assignee must be a support user.')
 
-        if current_user.is_sales():
-            # check if the contract associated client is connected sale's client
-            if Client.objects.get(id=contract.client_id).contact != current_user:
-                raise serializers.ValidationError('You do not have permission to create the event')
+
+        # if current_user.is_sales():
+        #     # check if the contract associated client is connected sale's client
+        #     if Client.objects.get(id=contract.client_id).contact != current_user:
+        #         raise serializers.ValidationError('You do not have permission to create the event')
 
         return data

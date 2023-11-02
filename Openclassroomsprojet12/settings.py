@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'contact.apps.ContactConfig',
     'contrat.apps.ContratConfig',
     'event.apps.EventConfig',
-    'django_filters'
+    'django_filters',
 ]
 
 MIDDLEWARE = [
