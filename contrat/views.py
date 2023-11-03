@@ -17,4 +17,3 @@ class ContratViewSet(viewsets.ModelViewSet):
     pagination_class = PageNumberPagination
     filter_backends = [filters.DjangoFilterBackend]
     filterset_class = ContractFilter
-

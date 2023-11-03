@@ -39,11 +39,11 @@ To restore the database from the backup file:
 
 1.Ensure you have MySQL installed and create a database with the name MySQL.
 ```bash
-CREATE DATABASE MySQL;
+CREATE DATABASE epic_crm;
 ```
 2.Run the following command to restore the database:
 ```bash
-mysql -u your_username -p MySQL < EpicEvent_backup.sql
+mysql -u your_username -p epic_crm < EpicEvent_backup.sql
 ```
 Replace your_username with your MySQL username. 
 ```bash

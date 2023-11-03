@@ -24,8 +24,6 @@ from event.urls import router_event
 from sentry import trigger_error
 from user.urls import router_user
 
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -35,6 +33,5 @@ urlpatterns = [
     path('api/contracts/', include(router_contract.urls)),
     path('api/events/', include(router_event.urls)),
     path('sentry-debug/', trigger_error),
-
 
 ]

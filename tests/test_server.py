@@ -99,9 +99,8 @@ def test_can_create_contract_as_not_management(api_client, logged_as_support, cr
     assert response.status_code == 403
 
 
-
 @pytest.mark.django_db
-def test_can_create_event_as_sales(api_client, logged_as_management, create_contract, create_events_data,):
+def test_can_create_event_as_sales(api_client, logged_as_management, create_contract, create_events_data, ):
     """
     :param api_client: a django test client
     :param logged_as_management: create and login as management
@@ -125,9 +124,8 @@ def test_can_create_event_as_sales(api_client, logged_as_management, create_cont
     assert response.status_code == 201
 
 
-
 @pytest.mark.django_db
-def test_can_create_event_as_not_sales(api_client, logged_as_management, create_contract, create_events_data,):
+def test_can_create_event_as_not_sales(api_client, logged_as_management, create_contract, create_events_data, ):
     """
     :param api_client: a django test client
     :param logged_as_management: create and login as management

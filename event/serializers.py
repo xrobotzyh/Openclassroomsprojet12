@@ -22,7 +22,6 @@ class EventSerializer(serializers.ModelSerializer):
     def validate(self, data):
         contract = data.get('contrat')
         assign_to_user = data.get('assigned_to')
-        current_user = self.context['request'].user
 
         if contract.status == 'not_sign':
             # check if the status of the contract is signed

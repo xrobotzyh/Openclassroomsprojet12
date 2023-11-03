@@ -62,8 +62,7 @@ ROOT_URLCONF = 'Openclassroomsprojet12.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -157,8 +156,6 @@ SIMPLE_JWT = {
         'rest_framework_simplejwt.tokens.AccessToken', 'rest_framework_simplejwt.tokens.RefreshToken'),
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
-
-
 
 sentry_sdk.init(
     dsn="https://2930874b065c317e28488b602b71eb34@o4506073358073856.ingest.sentry.io/4506073361154048",
