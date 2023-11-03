@@ -5,6 +5,9 @@ Epic Events is a company specializing in event management, ranging from parties 
 
 Our CRM software is designed to efficiently collect and manage client data, as well as event-related information. Moreover, it streamlines communication among various departments within our organization. This initiative is aimed at optimizing our workflow, providing superior services to our clients, and ensuring the success of their events.
 
+## Entity Relationship Diagram
+![Entity Relationship Diagram](https://github.com/xrobotzyh/Openclassroomsprojet12/blob/master/ER.png)
+
 ## Local Configuration
 ## Installation
 ### Getting the project on your local machine.
