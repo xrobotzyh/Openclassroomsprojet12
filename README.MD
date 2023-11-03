@@ -37,12 +37,15 @@ pip install -r requirements.txt
 
 To restore the database from the backup file:
 
-1.Ensure you have MySQL installed and a database with the same name as your original database.
+1.Ensure you have MySQL installed and create a database with the name MySQL.
+```bash
+CREATE DATABASE MySQL;
+```
 2.Run the following command to restore the database:
 ```bash
-mysql -u your_username -p your_database_name < EpicEvent_backup.sql
+mysql -u your_username -p MySQL < EpicEvent_backup.sql
 ```
-Replace your_username with your MySQL username and your_database_name with your database name. 
+Replace your_username with your MySQL username. 
 ```bash
 python manage.py migrate
 ```
@@ -60,7 +63,7 @@ Use the following information to test
 ```bash
 | User name             | password      |
 |-----------------------|---------------|
-| management01          | 123456789    | 
+| management01          | 123456789     | 
 
 ```
 
