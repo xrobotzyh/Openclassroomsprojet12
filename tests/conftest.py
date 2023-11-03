@@ -14,13 +14,20 @@ def api_client():
 
 
 @pytest.fixture
-def create_user(logged_as_sales):
+def create_user():
+    """
+    a fixture return a user instance and will delete it after every use
+    """
     user = User.objects.create_user(username='sale5', password='123456789', department='sales')
-    return user
+    yield user
+    user.delete()
 
 
 @pytest.fixture
 def create_client(create_user):
+    """
+    a fixture that return client instance and will delete it after every use
+    """
     user = create_user
     client = Client.objects.create(first_name='le', last_name='son', email='leson@447.fr', phone='325844',
                                    company_name='ooo', contact_id=user.id)
@@ -30,6 +37,9 @@ def create_client(create_user):
 
 @pytest.fixture
 def create_contract(create_client):
+    """
+    a fixture that return contract instance and will delete it after every use
+    """
     client = create_client
     contract = Contract.objects.create(client=client, quotation='70', paid='0', status='sign')
     yield contract
@@ -38,6 +48,10 @@ def create_contract(create_client):
 
 @pytest.fixture
 def logged_as_sales():
+    """
+    a fixture to create a user and get his token
+    :return : user's token
+    """
     user = User.objects.create_user(
         username='sale',
         password='123456789',
@@ -74,6 +88,10 @@ def logged_as_support():
 
 @pytest.fixture
 def create_user_data():
+    """
+    datas to be used to create a user
+    :return: data informations
+    """
     data = {
         'username': 'yy',
         'password': '123456789',

@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from django_filters import rest_framework as filters
 
 from .filters import ContractFilter
-from .models import Client, Contract
+from .models import Contract
 from .permissions import HasContractManipPermissions
 from .serializers import ContractSerializer
 
